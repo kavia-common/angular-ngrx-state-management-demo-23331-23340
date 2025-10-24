@@ -133,21 +133,23 @@ export class AppShellComponent {
   year: number;
 
   constructor() {
+    // SSR-safe: using Date only; avoid touching window/document/localStorage.
     // Avoid computing during field initialization to stay SSR-friendly and explicit.
     this.year = new Date().getFullYear();
   }
 
+  // Streams only; no direct DOM access here to keep SSR-safe.
   isDark$ = this.store.select(selectIsDarkMode);
   sidebarCollapsed$ = this.store.select(selectSidebarCollapsed);
 
   // PUBLIC_INTERFACE
-  /** Toggle theme between light and dark mode. */
+  /** Toggle theme between light and dark mode (SSR-safe). */
   toggleTheme() {
     this.store.dispatch(UiActions.toggleTheme({}));
   }
 
   // PUBLIC_INTERFACE
-  /** Toggle the sidebar collapsed/expanded state. */
+  /** Toggle the sidebar collapsed/expanded state (SSR-safe). */
   toggleSidebar() {
     this.store.dispatch(UiActions.toggleSidebar({}));
   }

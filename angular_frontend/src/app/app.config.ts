@@ -26,6 +26,12 @@ import { CounterEffects } from './features/counter/state/counter.effects';
 import { todosReducer } from './features/todos/state/todos.reducer';
 import { TodosEffects } from './features/todos/state/todos.effects';
 
+/**
+ * Note on SSR safety:
+ * - provideClientHydration is only applied in the browser bundle (this file);
+ *   server bundle uses app.config.server.ts without hydration.
+ * - No direct window/document/localStorage usage in providers.
+ */
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),

@@ -10,6 +10,9 @@ import { CanDeactivateFn } from '@angular/router';
  * To use, implement on the component:
  *  - hasUnsavedChanges(): boolean   // returns true when the component has pending edits
  *  - getConfirmMessage?(): string   // optional custom message
+ *
+ * SSR safety:
+ *  - Uses globalThis feature detection to avoid direct window/document usage.
  */
 export const unsavedChangesGuard: CanDeactivateFn<unknown> = (component) => {
   const hasUnsaved =

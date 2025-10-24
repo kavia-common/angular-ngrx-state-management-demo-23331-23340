@@ -4,13 +4,29 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 
 ## Development server
 
-To start a local development server, run:
+To start a local development server (client rendering), run:
 
 ```bash
 ng serve
 ```
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+
+## Server-Side Rendering (SSR)
+
+Build for SSR and run the Node server:
+
+```bash
+ng build
+node dist/angular/server/server.mjs
+# or using the provided npm script:
+npm run serve:ssr:angular
+```
+
+Notes:
+- The server bundle uses `src/app/app.config.server.ts` which only provides server-safe providers.
+- Client hydration is enabled only in the browser bundle via `provideClientHydration` in `app.config.ts`.
+- Do not use `window`, `document`, or `localStorage` directly in providers, guards, or at module top-level. Use `globalThis` feature detection or `isPlatformBrowser` within lifecycle hooks when needed.
 
 ## Code scaffolding
 
