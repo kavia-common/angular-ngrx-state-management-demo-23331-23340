@@ -17,6 +17,10 @@ import { reducers, metaReducers } from './store/app.reducers';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { httpErrorInterceptor } from './core/interceptors/http-error.interceptor';
 
+/* Feature: Counter */
+import { counterReducer } from './features/counter/state/counter.reducer';
+import { CounterEffects } from './features/counter/state/counter.effects';
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
@@ -31,10 +35,11 @@ export const appConfig: ApplicationConfig = {
       {
         ...reducers,
         router: routerReducer,
+        counter: counterReducer,
       },
       { metaReducers }
     ),
-    provideEffects([]),
+    provideEffects([CounterEffects]),
     provideRouterStore(),
 
     // Devtools only when not production (relies on Angular CLI file replacements if configured later)

@@ -14,5 +14,11 @@ export const routes: Routes = [
       import('./features/about/about.component').then((m) => m.AboutComponent),
     title: 'About',
   },
+  {
+    path: 'counter',
+    loadComponent: () =>
+      import('./features/counter/pages/counter.page').then((m) => m.CounterPageComponent),
+    title: 'Counter',
+  },
   { path: '**', redirectTo: '' },
 ];
