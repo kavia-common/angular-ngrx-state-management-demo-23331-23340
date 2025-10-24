@@ -130,7 +130,12 @@ import { selectIsDarkMode, selectSidebarCollapsed } from '../../store/ui/ui.sele
 })
 export class AppShellComponent {
   private store = inject(Store);
-  year = new Date().getFullYear();
+  year: number;
+
+  constructor() {
+    // Avoid computing during field initialization to stay SSR-friendly and explicit.
+    this.year = new Date().getFullYear();
+  }
 
   isDark$ = this.store.select(selectIsDarkMode);
   sidebarCollapsed$ = this.store.select(selectSidebarCollapsed);
