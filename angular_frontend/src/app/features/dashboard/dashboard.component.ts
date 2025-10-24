@@ -7,6 +7,7 @@ import { AppButtonComponent } from '../../shared/ui/button/button.component';
 import { selectCounterValue } from '../counter/state';
 import { selectTodosTotal } from '../todos/state';
 import { Observable } from 'rxjs';
+import { DebounceClickDirective } from '../../shared/directives/debounce-click.directive';
 
 /**
  * PUBLIC_INTERFACE
@@ -16,7 +17,7 @@ import { Observable } from 'rxjs';
 @Component({
   standalone: true,
   selector: 'app-dashboard',
-  imports: [AppCardComponent, RouterLink, AppButtonComponent, AsyncPipe, NgIf],
+  imports: [AppCardComponent, RouterLink, AppButtonComponent, AsyncPipe, NgIf, DebounceClickDirective],
   template: `
     <section style="display:flex; flex-direction:column; gap:1rem; margin:1rem;">
       <app-card title="Welcome" subtitle="Angular + NgRx Demo using the Ocean Professional theme">
@@ -25,6 +26,7 @@ import { Observable } from 'rxjs';
           <a routerLink="/counter"><app-button>Counter</app-button></a>
           <a routerLink="/todos"><app-button variant="secondary">Todos</app-button></a>
           <a routerLink="/about"><app-button variant="ghost">About</app-button></a>
+          <button appDebounceClick [debounceTime]="350" (debounceClick)="noop()" class="btn-primary" type="button" title="Debounced click example">Debounced</button>
         </div>
       </app-card>
 
@@ -61,4 +63,8 @@ export class DashboardComponent {
   private store = inject(Store);
   counter$: Observable<number> = this.store.select(selectCounterValue);
   todosTotal$: Observable<number> = this.store.select(selectTodosTotal);
+
+  // PUBLIC_INTERFACE
+  /** No-op handler to demonstrate debounce-click in action on the dashboard. */
+  noop() {}
 }

@@ -4,6 +4,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { UiActions } from '../../store/ui/ui.actions';
 import { selectIsDarkMode, selectSidebarCollapsed } from '../../store/ui/ui.selectors';
+import { DebounceClickDirective } from '../../shared/directives/debounce-click.directive';
 
 /**
  * PUBLIC_INTERFACE
@@ -14,12 +15,12 @@ import { selectIsDarkMode, selectSidebarCollapsed } from '../../store/ui/ui.sele
 @Component({
   standalone: true,
   selector: 'app-shell',
-  imports: [RouterOutlet, RouterLink, RouterLinkActive, AsyncPipe, NgIf, NgClass],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, AsyncPipe, NgIf, NgClass, DebounceClickDirective],
   template: `
     <div class="app-shell" [class.dark]="(isDark$ | async) ?? false">
       <!-- Top Navigation -->
       <header class="topnav app-surface">
-        <button type="button" class="icon-btn" (click)="toggleSidebar()"
+        <button type="button" class="icon-btn" appDebounceClick (debounceClick)="toggleSidebar()"
                 aria-label="Toggle sidebar" title="Toggle sidebar">
           ☰
         </button>
@@ -28,7 +29,7 @@ import { selectIsDarkMode, selectSidebarCollapsed } from '../../store/ui/ui.sele
           <span class="brand-title">Angular + NgRx Demo</span>
         </div>
         <div class="topnav-actions">
-          <button type="button" class="icon-btn" (click)="toggleTheme()" aria-label="Toggle theme" title="Toggle theme">
+          <button type="button" class="icon-btn" appDebounceClick (debounceClick)="toggleTheme()" aria-label="Toggle theme" title="Toggle theme">
             🌗
           </button>
           <a class="topnav-link" routerLink="/about" routerLinkActive="active">About</a>
@@ -133,8 +134,6 @@ export class AppShellComponent {
   year: number;
 
   constructor() {
-    // SSR-safe: using Date only; avoid touching window/document/localStorage.
-    // Avoid computing during field initialization to stay SSR-friendly and explicit.
     this.year = new Date().getFullYear();
   }
 

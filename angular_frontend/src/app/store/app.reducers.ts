@@ -1,6 +1,7 @@
 import { ActionReducerMap, MetaReducer } from '@ngrx/store';
 import { AppState } from './app.state';
 import { debugMetaReducer } from './meta-reducers/debug.reducer';
+import { localStorageUiMetaReducer } from './meta-reducers/localstorage.reducer';
 
 /**
  * Reducers map for the root state.
@@ -11,8 +12,9 @@ export const reducers: ActionReducerMap<Partial<AppState>> = {
 };
 
 /**
- * Global meta-reducers for development diagnostics.
+ * Global meta-reducers order: localStorage first to rehydrate, then debug for logging in dev.
  */
 export const metaReducers: MetaReducer[] = [
+  localStorageUiMetaReducer,
   debugMetaReducer
 ];
