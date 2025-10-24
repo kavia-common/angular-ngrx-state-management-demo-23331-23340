@@ -17,11 +17,7 @@
 }
 
 /* Reset / base */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 html, body {
   height: 100%;
@@ -43,6 +39,7 @@ html, body {
   background-image: linear-gradient(135deg, rgba(37,99,235,0.10), #f3f4f6);
 }
 
+/* Buttons (legacy utility retained) */
 .btn-primary {
   background-color: var(--color-primary);
   color: white;
@@ -56,10 +53,20 @@ html, body {
 .btn-primary:hover { box-shadow: var(--shadow); }
 .btn-primary:active { transform: translateY(1px); opacity: .95; }
 
-/* Container default styling for demo */
+/* Surfaces */
 .app-surface {
   background: var(--color-surface);
   border: 1px solid #e5e7eb;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
+}
+
+/* Dark scheme helpers when .dark class is applied on a parent */
+.dark {
+  --color-background: #0b1220;
+  --color-surface: #0f172a;
+  --color-text: #e5e7eb;
+}
+.dark .app-surface {
+  border-color: rgba(148,163,184,0.25);
 }
