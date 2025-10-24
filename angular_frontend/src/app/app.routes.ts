@@ -9,8 +9,9 @@ export const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        loadComponent: () => import('./features/dashboard/dashboard.component').then(m => m.DashboardComponent),
-        title: 'Dashboard'
+        loadComponent: () =>
+          import('./features/dashboard/dashboard.component').then((m) => m.DashboardComponent),
+        title: 'Dashboard',
       },
       {
         path: 'about',
@@ -30,7 +31,7 @@ export const routes: Routes = [
           import('./features/todos/pages/todos.page').then((m) => m.TodosPageComponent),
         title: 'Todos',
       },
-    ]
+    ],
   },
   { path: '**', redirectTo: '' },
 ];
