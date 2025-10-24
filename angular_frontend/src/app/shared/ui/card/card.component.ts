@@ -10,7 +10,7 @@ import { Component, Input } from '@angular/core';
   selector: 'app-card',
   template: `
     <section class="app-surface" [style.padding.px]="padding" [class.rounded-lg]="rounded" [class.shadow-sm]="shadow">
-      <header *ngIf="title" class="card-header header-gradient rounded" style="padding:.75rem;margin:-.5rem -0.5rem 1rem;">
+      <header *ngif="title" class="card-header header-gradient rounded" style="padding:.75rem;margin:-.5rem -0.5rem 1rem;">
         <h3 style="color:var(--color-primary);">{{ title }}</h3>
         <p *ngIf="subtitle" style="opacity:.8;">{{ subtitle }}</p>
       </header>
