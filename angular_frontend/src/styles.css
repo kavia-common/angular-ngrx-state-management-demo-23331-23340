@@ -1,4 +1,22 @@
-/* Global styles for minimalistic design */
+/* Global styles and theme variables - Ocean Professional */
+:root {
+  --color-primary: #2563EB;
+  --color-secondary: #F59E0B;
+  --color-error: #EF4444;
+  --color-background: #f9fafb;
+  --color-surface: #ffffff;
+  --color-text: #111827;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 6px 16px rgba(0,0,0,0.08);
+  --shadow-lg: 0 12px 24px rgba(0,0,0,0.12);
+}
+
+/* Reset / base */
 * {
   margin: 0;
   padding: 0;
@@ -7,6 +25,41 @@
 
 html, body {
   height: 100%;
-  background-color: #ffffff;
+  background-color: var(--color-background);
+  color: var(--color-text);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Utilities */
+.rounded-sm { border-radius: var(--radius-sm); }
+.rounded { border-radius: var(--radius-md); }
+.rounded-lg { border-radius: var(--radius-lg); }
+
+.shadow-sm { box-shadow: var(--shadow-sm); }
+.shadow { box-shadow: var(--shadow-md); }
+.shadow-lg { box-shadow: var(--shadow-lg); }
+
+.header-gradient {
+  background-image: linear-gradient(135deg, rgba(37,99,235,0.10), #f3f4f6);
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: transform .1s ease, box-shadow .2s ease, opacity .2s ease;
+}
+.btn-primary:hover { box-shadow: var(--shadow); }
+.btn-primary:active { transform: translateY(1px); opacity: .95; }
+
+/* Container default styling for demo */
+.app-surface {
+  background: var(--color-surface);
+  border: 1px solid #e5e7eb;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
 }

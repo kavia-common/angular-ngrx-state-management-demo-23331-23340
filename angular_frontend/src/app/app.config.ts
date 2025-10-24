@@ -1,9 +1,47 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, ENVIRONMENT_INITIALIZER, inject, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
-
-import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 
+import { routes } from './app.routes';
+
+/* NgRx core */
+import { provideStore } from '@ngrx/store';
+import { provideEffects } from '@ngrx/effects';
+import { provideRouterStore, routerReducer } from '@ngrx/router-store';
+import { provideStoreDevtools } from '@ngrx/store-devtools';
+
+/* App Store */
+import { reducers, metaReducers } from './store/app.reducers';
+
+/* HTTP and Interceptors */
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { httpErrorInterceptor } from './core/interceptors/http-error.interceptor';
+
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideClientHydration(withEventReplay())]
+  providers: [
+    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideRouter(routes),
+    provideClientHydration(withEventReplay()),
+
+    // HttpClient + global error interceptor
+    provideHttpClient(withInterceptors([httpErrorInterceptor])),
+
+    // NgRx Store setup
+    provideStore(
+      {
+        ...reducers,
+        router: routerReducer,
+      },
+      { metaReducers }
+    ),
+    provideEffects([]),
+    provideRouterStore(),
+
+    // Devtools only when not production (relies on Angular CLI file replacements if configured later)
+    provideStoreDevtools({
+      maxAge: 25,
+      name: 'Angular NgRx Demo',
+      logOnly: false
+    }),
+  ]
 };
