@@ -6,8 +6,8 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   template: `
     <section class="app-surface rounded-lg shadow-sm" style="padding:1.25rem;margin:1rem;">
       <header class="header-gradient rounded" style="padding:1rem;margin-bottom:1rem;">
-        <h2 style="color:var(--color-primary);">About</h2>
-        <p style="opacity:.8;">Angular + NgRx State Management Demo</p>
+        <h2 style="color:var(--color-primary); margin-bottom:.25rem;">About</h2>
+        <p class="text-muted">Angular + NgRx State Management Demo</p>
       </header>
 
       <p style="margin-bottom:1rem;">
@@ -22,7 +22,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
         <li>Mock services and simple UI with the Ocean Professional theme</li>
       </ul>
 
-      <p style="margin-top:1rem; opacity:.85;">
+      <p style="margin-top:1rem;" class="text-muted">
         Use the sidebar to navigate between the Dashboard, Counter, and Todos pages.
       </p>
     </section>

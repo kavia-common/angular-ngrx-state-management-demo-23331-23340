@@ -10,10 +10,10 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angul
   selector: 'app-counter-controls',
   template: `
     <div style="display:flex; gap:.5rem; flex-wrap:wrap;">
-      <button class="btn-primary" type="button" (click)="decrement.emit()">-1</button>
-      <button class="btn-primary" type="button" (click)="increment.emit()">+1</button>
-      <button class="btn-primary" type="button" (click)="incrementAsync.emit()">+1 (async)</button>
-      <button class="btn-primary" type="button" (click)="reset.emit()">Reset</button>
+      <button class="btn-primary" type="button" (click)="decrement.emit()" aria-label="Decrement">-1</button>
+      <button class="btn-primary" type="button" (click)="increment.emit()" aria-label="Increment">+1</button>
+      <button class="btn-primary" type="button" (click)="incrementAsync.emit()" aria-label="Increment asynchronously">+1 (async)</button>
+      <button class="btn-ghost" type="button" (click)="reset.emit()" aria-label="Reset counter">Reset</button>
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,

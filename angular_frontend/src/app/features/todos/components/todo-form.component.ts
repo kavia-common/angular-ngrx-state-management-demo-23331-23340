@@ -13,11 +13,13 @@ import { FormsModule } from '@angular/forms';
   template: `
     <form (ngSubmit)="submit()" style="display:flex; gap:.5rem; flex-wrap:wrap;">
       <input
+        class="input"
         name="title"
         [(ngModel)]="title"
         (ngModelChange)="dirty = true"
         placeholder="What needs to be done?"
-        style="flex:1; min-width: 180px; padding:.6rem .8rem; border-radius: var(--radius-md); border:1px solid #e5e7eb;"
+        style="flex:1; min-width: 220px;"
+        aria-label="Todo title"
       />
       <button class="btn-primary" type="submit">Add</button>
     </form>

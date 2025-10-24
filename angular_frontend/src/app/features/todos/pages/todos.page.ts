@@ -20,8 +20,8 @@ import { selectAllTodos, selectTodosLoading, selectTodosTotal } from '../state';
   template: `
     <section class="app-surface rounded-lg shadow-sm" style="padding:1.25rem;margin:1rem;">
       <header class="header-gradient rounded" style="padding:1rem;margin-bottom:1rem;">
-        <h2 style="color:var(--color-primary);">Todos</h2>
-        <p style="opacity:.8;">Entity-based state management with NgRx.</p>
+        <h2 style="color:var(--color-primary); margin-bottom:.25rem;">Todos</h2>
+        <p class="text-muted">Entity-based state management with NgRx.</p>
       </header>
 
       <app-todo-form (add)="onAdd($event)" />

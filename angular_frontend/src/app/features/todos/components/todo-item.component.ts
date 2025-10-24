@@ -12,10 +12,13 @@ import { Todo } from '../models/todo.model';
   selector: 'app-todo-item',
   imports: [NgClass],
   template: `
-    <div class="app-surface rounded-sm" style="padding:.5rem 1rem; display:flex; align-items:center; gap:.75rem; border:1px solid #e5e7eb;">
-      <input type="checkbox" [checked]="todo.completed" (change)="onToggle()" />
+    <div class="app-surface rounded" style="padding:.6rem 1rem; display:flex; align-items:center; gap:.75rem; border:1px solid #e5e7eb;">
+      <input type="checkbox" [checked]="todo.completed" (change)="onToggle()" aria-label="Toggle todo completion"/>
       <span [ngClass]="{ 'line-through': todo.completed }" style="flex:1;">{{ todo.title }}</span>
-      <button class="btn-primary" type="button" (click)="onRemove()">Remove</button>
+      <span class="badge" [class.success]="todo.completed" [class.primary]="!todo.completed">
+        {{ todo.completed ? 'Done' : 'Active' }}
+      </span>
+      <button class="btn-ghost" type="button" (click)="onRemove()" aria-label="Remove todo">Remove</button>
     </div>
   `,
   styles: [`

@@ -23,9 +23,9 @@ import { DebounceClickDirective } from '../../shared/directives/debounce-click.d
       <app-card title="Welcome" subtitle="Angular + NgRx Demo using the Ocean Professional theme">
         <p style="margin-bottom:1rem;">Explore the demo features using the links below.</p>
         <div style="display:flex; gap:.5rem; flex-wrap:wrap;">
-          <a routerLink="/counter"><app-button>Counter</app-button></a>
-          <a routerLink="/todos"><app-button variant="secondary">Todos</app-button></a>
-          <a routerLink="/about"><app-button variant="ghost">About</app-button></a>
+          <a routerLink="/counter" aria-label="Go to Counter"><app-button>Counter</app-button></a>
+          <a routerLink="/todos" aria-label="Go to Todos"><app-button variant="secondary">Todos</app-button></a>
+          <a routerLink="/about" aria-label="Go to About"><app-button variant="ghost">About</app-button></a>
           <button appDebounceClick [debounceTime]="350" (debounceClick)="noop()" class="btn-primary" type="button" title="Debounced click example">Debounced</button>
         </div>
       </app-card>

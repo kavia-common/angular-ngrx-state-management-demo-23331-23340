@@ -18,8 +18,8 @@ import { Observable } from 'rxjs';
   template: `
     <section class="app-surface rounded-lg shadow-sm" style="padding:1.25rem;margin:1rem;">
       <header class="header-gradient rounded" style="padding:1rem;margin-bottom:1rem;">
-        <h2 style="color:var(--color-primary);">Counter</h2>
-        <p style="opacity:.8;">Simple demonstration using NgRx Store, Effects, and Selectors.</p>
+        <h2 style="color:var(--color-primary); margin-bottom:.25rem;">Counter</h2>
+        <p class="text-muted">Simple demonstration using NgRx Store, Effects, and Selectors.</p>
       </header>
 
       <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;">

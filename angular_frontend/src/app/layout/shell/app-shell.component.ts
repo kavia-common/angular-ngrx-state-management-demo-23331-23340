@@ -72,53 +72,76 @@ import { DebounceClickDirective } from '../../shared/directives/debounce-click.d
   styles: [`
     :host, .app-shell { display: block; min-height: 100vh; }
     .app-shell.dark { --color-background: #0b1220; --color-surface: #0f172a; --color-text: #e5e7eb; }
+
     .topnav {
       position: sticky; top: 0; z-index: 10;
       display: flex; align-items: center; justify-content: space-between;
-      padding: .5rem .75rem; border-bottom: 1px solid #e5e7eb;
-      background-image: linear-gradient(135deg, rgba(37,99,235,0.10), #f3f4f6);
+      padding: var(--space-2) var(--space-3);
+      border-bottom: 1px solid #e5e7eb;
+      background-image: var(--gradient-header);
       backdrop-filter: blur(6px);
     }
     .brand { display:flex; align-items:center; gap:.5rem; font-weight: 600; color: var(--color-primary); }
     .logo-dot { width: .75rem; height: .75rem; background: var(--color-primary); border-radius: 50%; box-shadow: 0 0 0 3px rgba(37,99,235,0.15); }
-    .brand-title { letter-spacing: .2px; }
+    .brand-title { letter-spacing: .2px; font-size: var(--font-size-lg); }
     .topnav-actions { display:flex; align-items:center; gap:.25rem; }
-    .topnav-link { padding: .4rem .6rem; border-radius: var(--radius-sm); color: inherit; text-decoration: none; opacity:.9; }
+    .topnav-link {
+      padding: .4rem .6rem; border-radius: var(--radius-sm);
+      color: inherit; text-decoration: none; opacity:.9;
+      transition: background .2s ease, color .2s ease;
+    }
     .topnav-link:hover { background: rgba(0,0,0,.04); }
-    .topnav-link.active { background: rgba(37,99,235,.12); color: var(--color-primary); }
+    .topnav-link.active {
+      background: rgba(37,99,235,.12);
+      color: var(--color-primary);
+      box-shadow: inset 0 0 0 1px rgba(37,99,235,.20);
+    }
 
     .icon-btn {
       background: transparent; border: 1px solid #e5e7eb;
       padding: .35rem .55rem; border-radius: var(--radius-sm);
-      cursor: pointer; transition: background .2s ease, transform .1s ease;
+      cursor: pointer; transition: background .2s ease, transform .1s ease, border-color .2s ease;
+      color: inherit;
     }
     .icon-btn:hover { background: rgba(0,0,0,.04); }
     .icon-btn:active { transform: translateY(1px); }
+    .icon-btn:focus-visible { border-color: color-mix(in oklab, var(--color-primary) 55%, #e5e7eb); }
 
-    .app-body { display: grid; grid-template-columns: 240px 1fr; gap: 1rem; padding: 1rem; }
+    .app-body { display: grid; grid-template-columns: 240px 1fr; gap: var(--space-4); padding: var(--space-4); }
     .sidenav {
       height: calc(100dvh - 72px);
       position: sticky; top: 72px;
-      padding: .75rem; border: 1px solid #e5e7eb; border-radius: var(--radius-lg);
-      transition: width .2s ease, transform .2s ease;
+      padding: var(--space-3);
+      border: 1px solid #e5e7eb; border-radius: var(--radius-lg);
+      transition: width .2s ease, transform .2s ease, border-color .2s ease, background .2s ease;
       width: 240px; overflow: hidden;
+      background: var(--color-surface);
+      box-shadow: var(--shadow-sm);
     }
     .sidenav.collapsed { width: 64px; }
     .nav-links { display:flex; flex-direction: column; gap:.25rem; }
     .nav-links a {
       display:flex; align-items:center; gap:.5rem;
       padding: .55rem .6rem; border-radius: var(--radius-md);
-      color: inherit; text-decoration: none; opacity:.9; border: 1px solid transparent;
+      color: inherit; text-decoration: none; opacity:.95; border: 1px solid transparent;
+      transition: background .2s ease, color .2s ease, border-color .2s ease, transform .1s ease;
     }
     .nav-links a:hover { background: rgba(0,0,0,.04); }
-    .nav-links a.active { background: rgba(37,99,235,.12); color: var(--color-primary); border-color: rgba(37,99,235,.25); }
+    .nav-links a.active {
+      background: rgba(37,99,235,.12); color: var(--color-primary);
+      border-color: rgba(37,99,235,.25);
+    }
     .nav-links .icon { width: 1.25rem; text-align:center; }
     .sidenav.collapsed .label { display: none; }
 
     .content { min-height: 60vh; }
+
     .footer {
-      margin: 1rem; padding: .75rem 1rem; text-align: center;
+      margin: var(--space-4);
+      padding: .75rem 1rem; text-align: center;
       border: 1px solid #e5e7eb; border-radius: var(--radius-lg);
+      background: var(--color-surface);
+      box-shadow: var(--shadow-sm);
     }
 
     @media (max-width: 900px) {

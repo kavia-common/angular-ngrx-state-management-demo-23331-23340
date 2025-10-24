@@ -22,8 +22,8 @@ import { TodoItemComponent } from './todo-item.component';
       />
     </div>
     <ng-template #empty>
-      <div class="app-surface rounded-sm" style="padding:1rem;border:1px dashed #e5e7eb; text-align:center;">
-        No todos yet. Add your first one!
+      <div class="app-surface rounded" style="padding:1.25rem;border:1px dashed #e5e7eb; text-align:center;">
+        <span class="text-muted">No todos yet. Add your first one!</span>
       </div>
     </ng-template>
   `,
