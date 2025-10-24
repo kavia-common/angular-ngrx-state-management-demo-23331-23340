@@ -1,0 +1,4 @@
+{
+    "command": "npm run test",
+    "working_directory": "/home/kavia/workspace/code-generation/angular-ngrx-state-management-demo-23331-23340/angular_frontend"
+}
