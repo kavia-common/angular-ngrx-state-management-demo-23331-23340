@@ -1,5 +1,6 @@
-import { Routes } from '@angular/router';
+import { Routes, CanDeactivateFn } from '@angular/router';
 import { AppShellComponent } from './layout/shell/app-shell.component';
+import { unsavedChangesGuard } from './features/todos/guards/unsaved-changes.guard';
 
 export const routes: Routes = [
   {
@@ -29,9 +30,15 @@ export const routes: Routes = [
         path: 'todos',
         loadComponent: () =>
           import('./features/todos/pages/todos.page').then((m) => m.TodosPageComponent),
+        canDeactivate: [unsavedChangesGuard],
         title: 'Todos',
+      },
+      {
+        path: '**',
+        loadComponent: () =>
+          import('./features/not-found/not-found.component').then((m) => m.NotFoundComponent),
+        title: 'Not Found',
       },
     ],
   },
-  { path: '**', redirectTo: '' },
 ];

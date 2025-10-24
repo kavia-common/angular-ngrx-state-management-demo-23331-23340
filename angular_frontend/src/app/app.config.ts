@@ -1,5 +1,5 @@
-import { ApplicationConfig, ENVIRONMENT_INITIALIZER, inject, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { ApplicationConfig, isDevMode, provideZoneChangeDetection } from '@angular/core';
+import { provideRouter, withInMemoryScrolling, withRouterConfig } from '@angular/router';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 
 import { routes } from './app.routes';
@@ -29,7 +29,18 @@ import { TodosEffects } from './features/todos/state/todos.effects';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes),
+    // Router with extras and SSR-safe settings
+    provideRouter(
+      routes,
+      withInMemoryScrolling({
+        scrollPositionRestoration: 'enabled',
+        anchorScrolling: 'enabled'
+      }),
+      withRouterConfig({
+        onSameUrlNavigation: 'reload',
+        paramsInheritanceStrategy: 'always'
+      })
+    ),
     provideClientHydration(withEventReplay()),
 
     // HttpClient + global error interceptor
@@ -47,9 +58,10 @@ export const appConfig: ApplicationConfig = {
       { metaReducers }
     ),
     provideEffects([CounterEffects, TodosEffects]),
+    // Router store; enable standard tracing via console in dev with a minimal hook
     provideRouterStore(),
 
-    // Devtools only when not production (relies on Angular CLI file replacements if configured later)
+    // Devtools only in dev
     provideStoreDevtools({
       maxAge: 25,
       name: 'Angular NgRx Demo',

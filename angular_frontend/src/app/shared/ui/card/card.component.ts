@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { NgIf } from '@angular/common';
 
 /**
  * PUBLIC_INTERFACE
@@ -8,9 +9,10 @@ import { Component, Input } from '@angular/core';
 @Component({
   standalone: true,
   selector: 'app-card',
+  imports: [NgIf],
   template: `
     <section class="app-surface" [style.padding.px]="padding" [class.rounded-lg]="rounded" [class.shadow-sm]="shadow">
-      <header *ngif="title" class="card-header header-gradient rounded" style="padding:.75rem;margin:-.5rem -0.5rem 1rem;">
+      <header *ngIf="title" class="card-header header-gradient rounded" style="padding:.75rem;margin:-.5rem -0.5rem 1rem;">
         <h3 style="color:var(--color-primary);">{{ title }}</h3>
         <p *ngIf="subtitle" style="opacity:.8;">{{ subtitle }}</p>
       </header>
