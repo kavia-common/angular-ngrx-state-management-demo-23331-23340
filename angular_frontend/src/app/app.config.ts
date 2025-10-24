@@ -21,6 +21,10 @@ import { httpErrorInterceptor } from './core/interceptors/http-error.interceptor
 import { counterReducer } from './features/counter/state/counter.reducer';
 import { CounterEffects } from './features/counter/state/counter.effects';
 
+/* Feature: Todos */
+import { todosReducer } from './features/todos/state/todos.reducer';
+import { TodosEffects } from './features/todos/state/todos.effects';
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
@@ -36,10 +40,11 @@ export const appConfig: ApplicationConfig = {
         ...reducers,
         router: routerReducer,
         counter: counterReducer,
+        todos: todosReducer,
       },
       { metaReducers }
     ),
-    provideEffects([CounterEffects]),
+    provideEffects([CounterEffects, TodosEffects]),
     provideRouterStore(),
 
     // Devtools only when not production (relies on Angular CLI file replacements if configured later)

@@ -20,5 +20,11 @@ export const routes: Routes = [
       import('./features/counter/pages/counter.page').then((m) => m.CounterPageComponent),
     title: 'Counter',
   },
+  {
+    path: 'todos',
+    loadComponent: () =>
+      import('./features/todos/pages/todos.page').then((m) => m.TodosPageComponent),
+    title: 'Todos',
+  },
   { path: '**', redirectTo: '' },
 ];
