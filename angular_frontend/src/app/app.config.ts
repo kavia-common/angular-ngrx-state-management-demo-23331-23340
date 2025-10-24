@@ -12,6 +12,7 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 
 /* App Store */
 import { reducers, metaReducers } from './store/app.reducers';
+import { uiReducer } from './store/ui/ui.reducer';
 
 /* HTTP and Interceptors */
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
@@ -41,6 +42,7 @@ export const appConfig: ApplicationConfig = {
         router: routerReducer,
         counter: counterReducer,
         todos: todosReducer,
+        ui: uiReducer,
       },
       { metaReducers }
     ),

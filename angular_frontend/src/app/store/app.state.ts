@@ -1,6 +1,7 @@
 import { RouterReducerState } from '@ngrx/router-store';
 import { CounterState } from '../features/counter/state/counter.reducer';
 import { TodosState } from '../features/todos/state/todos.reducer';
+import { UiState } from './ui/ui.reducer';
 
 /**
  * PUBLIC_INTERFACE
@@ -11,4 +12,5 @@ export interface AppState {
   router: RouterReducerState;
   counter: CounterState;
   todos: TodosState;
+  ui: UiState;
 }
